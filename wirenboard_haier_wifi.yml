@@ -1,5 +1,5 @@
 substitutions:
-  device_name: haier-mqtt-node
+  device_name: kroom-air-conditioner
   friendly_name: Haier Air Conditioner
   haier_uart_tx_pin: GPIO3
   haier_uart_rx_pin: GPIO1
