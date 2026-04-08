@@ -25,29 +25,16 @@ ESPHome-проект для управления кондиционером Haie
 
 ## Настройка
 
-.. list-table:: Haier UART pinout
-:header-rows: 1
+| Board | USB | Wire color | ESP8266/ESP32 |
+| --- | --- | --- | --- |
+| 5V | VCC | red | 5V |
+| GND | GND | black | GND |
+| TX | DATA+ | green | RX |
+| RX | DATA- | white | TX |
 
-    * - Board
-      - USB
-      - Wire color
-      - ESP8266
-    * - 5V
-      - VCC
-      - red
-      - 5V
-    * - GND
-      - GND
-      - black
-      - GND
-    * - TX
-      - DATA+
-      - green
-      - RX
-    * - RX
-      - DATA-
-      - white
-      - TX
+Пример установки ESP32-S3 SuperMini внутри корпуса:
+
+![ESP32-S3 SuperMini](esp32_s3_supermini.jpg)
 
 В проекте используется файл `secrets.yaml`. В нем должны быть определены:
 
