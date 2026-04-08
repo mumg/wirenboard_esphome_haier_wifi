@@ -2,6 +2,12 @@
 
 ESPHome-проект для управления кондиционером Haier через UART и MQTT без Home Assistant API.
 
+## Интерфейс Wiren Board
+
+Скриншот устройства в веб-интерфейсе Wiren Board:
+
+![Wiren Board UI](wirenboard.png)
+
 ## Что делает проект
 
 - Подключает ESP32 к кондиционеру Haier по UART.
@@ -18,6 +24,30 @@ ESPHome-проект для управления кондиционером Haie
 - подключение UART к плате кондиционера Haier
 
 ## Настройка
+
+.. list-table:: Haier UART pinout
+:header-rows: 1
+
+    * - Board
+      - USB
+      - Wire color
+      - ESP8266
+    * - 5V
+      - VCC
+      - red
+      - 5V
+    * - GND
+      - GND
+      - black
+      - GND
+    * - TX
+      - DATA+
+      - green
+      - RX
+    * - RX
+      - DATA-
+      - white
+      - TX
 
 В проекте используется файл `secrets.yaml`. В нем должны быть определены:
 
