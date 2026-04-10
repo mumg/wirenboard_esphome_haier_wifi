@@ -432,6 +432,16 @@ climate:
 
 binary_sensor:
   - platform: template
+    id: haier_power_sensor
+    lambda: |-
+      return id(haier_ac).mode != CLIMATE_MODE_OFF;
+    on_state:
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/power
+          payload: !lambda |-
+            return x ? "1" : "0";
+          retain: true
+  - platform: template
     id: haier_connected_sensor
     lambda: |-
       return id(haier_ac).valid_connection();
