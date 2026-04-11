@@ -397,6 +397,108 @@ script:
           topic: /devices/haier-${device_name}/controls/target_temperature/meta/type
           payload: "value"
           retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/outdoor_fan_status/meta
+          payload: >-
+            {"order":13,"readonly":true,"title":{"en":"Outdoor fan status","ru":"Статус наружного вентилятора"},"type":"switch"}
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/outdoor_fan_status/meta/order
+          payload: "13"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/outdoor_fan_status/meta/readonly
+          payload: "1"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/outdoor_fan_status/meta/type
+          payload: "switch"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/defrost_status/meta
+          payload: >-
+            {"order":14,"readonly":true,"title":{"en":"Defrost status","ru":"Статус разморозки"},"type":"switch"}
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/defrost_status/meta/order
+          payload: "14"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/defrost_status/meta/readonly
+          payload: "1"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/defrost_status/meta/type
+          payload: "switch"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/compressor_status/meta
+          payload: >-
+            {"order":15,"readonly":true,"title":{"en":"Compressor status","ru":"Статус компрессора"},"type":"switch"}
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/compressor_status/meta/order
+          payload: "15"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/compressor_status/meta/readonly
+          payload: "1"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/compressor_status/meta/type
+          payload: "switch"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_fan_status/meta
+          payload: >-
+            {"order":16,"readonly":true,"title":{"en":"Indoor fan status","ru":"Статус внутреннего вентилятора"},"type":"switch"}
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_fan_status/meta/order
+          payload: "16"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_fan_status/meta/readonly
+          payload: "1"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_fan_status/meta/type
+          payload: "switch"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/four_way_valve_status/meta
+          payload: >-
+            {"order":17,"readonly":true,"title":{"en":"Four-way valve status","ru":"Статус четырёхходового клапана"},"type":"switch"}
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/four_way_valve_status/meta/order
+          payload: "17"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/four_way_valve_status/meta/readonly
+          payload: "1"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/four_way_valve_status/meta/type
+          payload: "switch"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_electric_heating_status/meta
+          payload: >-
+            {"order":18,"readonly":true,"title":{"en":"Indoor electric heating status","ru":"Статус внутреннего электрического нагрева"},"type":"switch"}
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_electric_heating_status/meta/order
+          payload: "18"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_electric_heating_status/meta/readonly
+          payload: "1"
+          retain: true
+      - mqtt.publish:
+          topic: /devices/haier-${device_name}/controls/indoor_electric_heating_status/meta/type
+          payload: "switch"
+          retain: true
 uart:
   - id: haier_uart
     baud_rate: 9600
@@ -461,6 +563,62 @@ binary_sensor:
           payload: !lambda |-
             return x ? "1" : "0";
           retain: true
+  - platform: haier
+    haier_id: haier_ac
+    outdoor_fan_status:
+      id: haier_outdoor_fan_status
+      internal: true
+      on_state:
+        - mqtt.publish:
+            topic: /devices/haier-${device_name}/controls/outdoor_fan_status
+            payload: !lambda |-
+              return x ? "1" : "0";
+            retain: true
+    defrost_status:
+      id: haier_defrost_status
+      internal: true
+      on_state:
+        - mqtt.publish:
+            topic: /devices/haier-${device_name}/controls/defrost_status
+            payload: !lambda |-
+              return x ? "1" : "0";
+            retain: true
+    compressor_status:
+      id: haier_compressor_status
+      internal: true
+      on_state:
+        - mqtt.publish:
+            topic: /devices/haier-${device_name}/controls/compressor_status
+            payload: !lambda |-
+              return x ? "1" : "0";
+            retain: true
+    indoor_fan_status:
+      id: haier_indoor_fan_status
+      internal: true
+      on_state:
+        - mqtt.publish:
+            topic: /devices/haier-${device_name}/controls/indoor_fan_status
+            payload: !lambda |-
+              return x ? "1" : "0";
+            retain: true
+    four_way_valve_status:
+      id: haier_four_way_valve_status
+      internal: true
+      on_state:
+        - mqtt.publish:
+            topic: /devices/haier-${device_name}/controls/four_way_valve_status
+            payload: !lambda |-
+              return x ? "1" : "0";
+            retain: true
+    indoor_electric_heating_status:
+      id: haier_indoor_electric_heating_status
+      internal: true
+      on_state:
+        - mqtt.publish:
+            topic: /devices/haier-${device_name}/controls/indoor_electric_heating_status
+            payload: !lambda |-
+              return x ? "1" : "0";
+            retain: true
 
 text_sensor:
   - platform: template
